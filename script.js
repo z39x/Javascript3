@@ -27,8 +27,24 @@ function addStudentToTable(student){
   <td>${student.name}</td>
    <td>${student.lastName}</td>
     <td>${student.grade}</td>
+    <td><button class= "delete">Eliminar</button> <button class= "modify">Modificar</button></td>
   `;
-tableBody.appendChild(row)
+
+  row.querySelector(".delete").addEventListener("click", function(){
+    deleteEstudiante(student, row)
+  })
+tableBody.appendChild(row);
+calcularPromedio();
+}
+
+
+function deleteEstudiante(student, row){
+  const index= students.indexOf(student);
+  if (index > -1){
+    students.splice(index, 1);
+    row.remove();
+    calcularPromedio()
+  }
 }
 
 
@@ -38,7 +54,7 @@ function calcularPromedio(){
    promedios.textContent="Promedio General del Curso: N/A"
    return
  }
- const total= students.reduce((sum, student)=> sum+student.grade,0);
- const prom= total/students.lenght;
+ var total= students.reduce((sum, student)=> sum+student.grade, 0);
+ var prom= total/students.length;
  promedios.textContent="Promedio General del Curso: "+prom.toFixed(2);
 }
