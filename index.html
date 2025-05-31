@@ -12,16 +12,19 @@
     <div class="promedio"id="average">Promedio General del Curso: N/A</div>
     <form id="studentForm" class="formulario">
         <div>
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" required>
+            <label for="name">Nombre: </label>
+            <input type="text" id="name" required
+            oninvalid="this.setCustomValidity('Por favor,complete el campo Nombre')" oninput="this.setCustomValidity('')">
         </div>
         <div>
-            <label for="lastName">Apellido:</label>
-            <input type="text" id="lastName">
+            <label for="lastName">Apellido: </label>
+            <input type="text" id="lastName" required 
+            oninvalid="this.setCustomValidity('Por favor,complete el campo Apellido')" oninput="this.setCustomValidity('')">
         </div>
         <div>
-            <label for="grade">Nota:</label>
-            <input type="number" id="grade" step="0.1" min="1" max="7">
+            <label for="grade">Calificacion: </label>
+            <input type="number" id="grade" step="0.1" min="1" max="7" required
+            oninvalid="this.setCustomValidity('Por favor,complete el campo Calificacion')" oninput="this.setCustomValidity('')">
         </div>
         <button type="submit">Guardar</button>
     </form>  
