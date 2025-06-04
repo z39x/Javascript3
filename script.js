@@ -1,7 +1,11 @@
 const students=[];
 const tableBody=document.querySelector("#studentTable tbody");
-const averageDiv = document.getElementById("average");
+const averageDiv= document.getElementById("average");
+const totalAlumn= document.getElementById("totales");
+const noEximido= document.getElementById("noEximidos");
+var noExim= 0
 let editstudent = null;
+let exim = false
 
 document.getElementById("studentForm").addEventListener("submit",function (e){
  e.preventDefault();
@@ -25,17 +29,20 @@ document.getElementById("studentForm").addEventListener("submit",function (e){
       row.querySelector(".grade-column").textContent=grade;
   }
   editstudent=null;
-} else {
-  const student = {
+} else{
+  const student= {
       id: name,
       name,
       lastName,
       grade
   };
+
   students.push(student);
   addStudentToTable(student);
 }
   calcularPromedio()
+  totales()
+  noEximidos()
   this.reset();
 });
 
@@ -72,14 +79,15 @@ function deleteEstudiante(studentId, row){
   if (index > -1){
     students.splice(index, 1);
     row.remove();
-    calcularPromedio()
+    calcularPromedio();
+    totales();
+    noEximidos(exim = true);
   }
   if (editstudent === studentId) {
     editstudent = null;
     document.getElementById("studentForm").reset();
 }
 }
-
 
 const promedios= document.getElementById("average");
 
@@ -90,5 +98,24 @@ function calcularPromedio(){
  }
  var total= students.reduce((sum, student)=> sum+student.grade, 0);
  var prom= total/students.length;
- promedios.textContent="Promedio General del Curso: "+prom.toFixed(2);
+ promedios.textContent= "Promedio General del Curso: "+prom.toFixed(2);
+}
+
+function totales(){
+  total= students.length;
+  totalAlumn.textContent="Alumnos totales= "+total;
+}
+
+function noEximidos(exim){
+  const index=students.findIndex(s=> s.id);
+  if(students[index].grade < 5.0){
+    if(exim = true){
+      noExim= noExim + 1
+      noEximido.textContent= "Alumnos a realizar examen= "+noExim;
+    }
+    else{
+      noExim= noExim + 1
+     noEximido.textContent= "Alumnos a realizar examen= "+noExim;
+    }
+  }
 }

@@ -23,6 +23,20 @@ h2 {
     color: #007bff
 }
 
+.estadisticas{
+    width: fit-content;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 2px solid #007bff;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #007bff
+}
+
 .formulario {
     border: 2px solid #007bff;
     border-radius: 10px;
